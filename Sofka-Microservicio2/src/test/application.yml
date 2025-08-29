@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 34
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      mode: never
+security:
+  jwt:
+    expirationMinutes: 4000
+    key-id: key-2025-08
+    issuer: test-issuer
+    audience: test-aud
+    secret: test-secret
+
+app:
+  security:
+    bcrypt-strength: 10
