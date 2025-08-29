@@ -1,5 +1,6 @@
 package com.sofka.sofkaClient.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sofka.sofkaClient.person.Person;
 import com.sofka.sofkaClient.shared.commons.PropertiesUtils;
 import com.sofka.sofkaClient.shared.commons.Status;
@@ -36,6 +37,7 @@ public class Client extends Person implements Cloneable {
     @NotNull
     @Size(max = 60)
     @Column(name = "password_hash")
+    @JsonIgnore
     private String password;
 
     //Usualmente se toma 0 como inactivo y 1 como activo, pero prefiero ser especifico.

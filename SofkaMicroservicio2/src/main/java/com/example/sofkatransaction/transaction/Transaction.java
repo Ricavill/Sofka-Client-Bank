@@ -5,15 +5,21 @@ import com.example.sofkatransaction.auditing.AuditableEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transaction")
 @EntityListeners(AuditingEntityListener.class)
 @DynamicUpdate
-public class Transaction extends AuditableEntity<Long> {
+public class Transaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
 
     private TransactionType transactionType;
     @JsonBackReference
@@ -21,6 +27,10 @@ public class Transaction extends AuditableEntity<Long> {
     private Account account;
     private BigDecimal amount;
     private BigDecimal balance;
+
+    @CreatedDate
+    @Column(name = "created_at", updatable = false)
+    protected LocalDateTime createdAt;
 
     public Transaction() {
     }
@@ -32,6 +42,18 @@ public class Transaction extends AuditableEntity<Long> {
         this.balance = transactionRequest.getBalance();
     }
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Account getAccount() {
         return account;

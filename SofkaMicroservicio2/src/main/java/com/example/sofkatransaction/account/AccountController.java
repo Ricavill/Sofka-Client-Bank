@@ -13,12 +13,23 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public Account getClient(@PathVariable Long id) {
-        return accountService.getAccountById(id);
+    public Account getAccount(@PathVariable Long id) {
+        return accountService.getClientAccountById(id);
     }
 
     @PostMapping("")
     public Account createAccount(@RequestBody AccountRequest request) {
         return accountService.createAccount(request);
+    }
+
+    @PatchMapping("/{id}")
+    public Account updateAccount(@PathVariable Long id, @RequestBody AccountRequest request) {
+        return accountService.updateAccount(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public Account deleteAccount(@PathVariable Long id) {
+        return accountService.deleteAccount(id);
+
     }
 }

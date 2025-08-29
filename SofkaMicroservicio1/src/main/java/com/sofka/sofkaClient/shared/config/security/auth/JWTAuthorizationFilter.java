@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private final JWTService jwtService;
@@ -53,7 +54,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             UserDetails userDetails = this.clientDetailService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
                     null, userDetails.getAuthorities());
+            authentication.setDetails(Map.of("id",client.getId()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
 
         } catch (JwtException e) {
             filterChain.doFilter(request, response);

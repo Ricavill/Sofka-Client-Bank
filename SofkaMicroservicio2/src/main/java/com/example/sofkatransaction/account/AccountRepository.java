@@ -15,8 +15,13 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query("select a " +
             "from Account a " +
-            "where a.accountNumber=?1 and a.deletedAt is null")
-    Optional<Account> findAccountByAccountNumber(Long id);
+            "where a.id=?1 and a.clientId=?2 and a.deletedAt is null")
+    Optional<Account> findClientAccountById(Long id,Long clientId);
+
+    @Query("select a " +
+            "from Account a " +
+            "where a.accountNumber=?1 and a.clientId=?2 and a.deletedAt is null")
+    Optional<Account> findAccountByAccountNumber(Long id,Long clientId);
 
     @Query("select a " +
             "from Account a " +

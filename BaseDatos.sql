@@ -1,3 +1,4 @@
+-- CREATE DATABASE SofkaDB; En teoria lo deberia hacer docker
 
 \c sofkadb
 

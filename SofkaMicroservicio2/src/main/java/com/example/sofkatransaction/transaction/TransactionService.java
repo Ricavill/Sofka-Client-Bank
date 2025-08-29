@@ -20,6 +20,7 @@ public class TransactionService {
     }
 
     public Transaction createTransaction(TransactionRequest transactionRequest) {
+
         fetchAccount(transactionRequest);
         checkTransactionRequest(transactionRequest);
         return doOperation(transactionRequest);
