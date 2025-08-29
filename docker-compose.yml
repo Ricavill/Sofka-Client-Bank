@@ -11,7 +11,7 @@ services:
       - ./BaseDatos.sql:/docker-entrypoint-initdb.d/BaseDatos.sql
   service-a:
     build:
-      context: ./SofkaTest
+      context: ./SofkaMicroservicio1
       args:
         DB_PRIMARY_DATASOURCE_URL: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
         DB_USERNAME: postgres
@@ -24,7 +24,7 @@ services:
     image: myorg/service-a:local
     container_name: service-a
     env_file:
-      - SofkaTest/.env
+      - SofkaMicroservicio1/.env
     ports:
       - "8081:8080"
     # host:container
@@ -37,7 +37,7 @@ services:
 
   service-b:
     build:
-      context: ./SofkaTransaction
+      context: ./SofkaMicroservicio2
       args:
         DB_PRIMARY_DATASOURCE_URL: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
         DB_USERNAME: postgres
@@ -48,7 +48,7 @@ services:
     image: myorg/service-b:local
     container_name: service-b
     env_file:
-      - SofkaTransaction/.env
+      - SofkaMicroservicio2/.env
     environment:
       MS1_URL: http://service-a:8080
       ISSUER_URI=http://service-a:8080/.well-known/jwks.json:

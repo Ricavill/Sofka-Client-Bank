@@ -3,9 +3,6 @@
 build/
 out/
 
-# Gradle wrapper JAR (optional)
-gradle/wrapper/gradle-wrapper.jar
-
 # IntelliJ
 .idea/
 *.iml
