@@ -36,6 +36,7 @@ Se realizaron **tests unitarios y de integración** para demostrar las capacidad
 
 ## ⚙️ Instalación y Ejecución
 git clone https://github.com/Ricavill/Sofka-Client-Bank.git
+
 docker compose up --build
 
 🐳 Docker
