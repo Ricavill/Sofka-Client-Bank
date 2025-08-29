@@ -54,3 +54,24 @@ Además, el proyecto incluye:
 - 🗂️ **Archivos JSON de prueba** con ejemplos de requests y responses de los microservicios  
 
 Esto permite validar rápidamente el comportamiento de las APIs.
+
+# ⚠️ IMPORTANTE
+
+Para ejecutar correctamente el proyecto es necesario crear un archivo **`.env`** en cada uno de los microservicios:  
+
+### 🔹 MicroServicio 1 (Información de Cliente)
+```env
+DB_PRIMARY_DATASOURCE_URL=jdbc:postgresql://db:5432/sofkadb?currentSchema=ms1
+DB_USERNAME=postgres
+DB_PASSWORD=yoshi123
+JWT_SECRET=EstaEsUnaFraseSecretaParaPoderProbar
+JWT_EXPIRATION_MINUTES=6000000
+HASH_STRENGTH=10
+KEY_ID=key-2025-08
+
+### 🔹 MicroServicio 2 (Transacciones)
+DB_PRIMARY_DATASOURCE_URL=jdbc:postgresql://db:5432/sofkadb?currentSchema=ms2
+DB_USERNAME=postgres
+DB_PASSWORD=yoshi123
+
+✅ Nota: Estos valores fueron los usados para desplegar el programa. Se pueden modificar según el entorno o las necesidades, pero sirven como datos de prueba funcionales.
