@@ -27,7 +27,7 @@ como metodo la herencia como se dijo en vez de composition.*/
 @PrimaryKeyJoinColumn(name = "id")
 @DynamicUpdate
 public class Client extends Person implements Cloneable {
-    private static final String[] READ_ONLY_PROPERTIES = {"username", "password"};
+    private static final String[] READ_ONLY_PROPERTIES = {"username", "password","deletedAt"};
 
     //todo pensar si es buena idea poner unique
     @NotNull

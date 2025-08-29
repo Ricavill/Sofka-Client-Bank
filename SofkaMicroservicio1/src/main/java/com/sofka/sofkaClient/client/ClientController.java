@@ -27,6 +27,10 @@ public class ClientController {
     public Client edit(@RequestBody @Validated ClientRequest clientRequest, @PathVariable Long id) {
         return this.clientService.editClient(id, clientRequest);
     }
+    @DeleteMapping("/{id}")
+    public Client delete(@PathVariable Long id) {
+        return this.clientService.deleteClient(id);
+    }
 
 
 }

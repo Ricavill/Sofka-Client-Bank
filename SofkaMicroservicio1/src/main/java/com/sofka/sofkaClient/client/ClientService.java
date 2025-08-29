@@ -1,6 +1,7 @@
 package com.sofka.sofkaClient.client;
 
 import com.sofka.sofkaClient.shared.commons.PasswordUtils;
+import com.sofka.sofkaClient.shared.commons.Status;
 import com.sofka.sofkaClient.shared.config.exceptions.EntityNotFoundException;
 import com.sofka.sofkaClient.shared.config.exceptions.ValidationException;
 import com.sofka.sofkaClient.shared.config.security.SecurityProperties;
@@ -54,6 +55,18 @@ public class ClientService {
         }
         client = this.getClientById(clientId);
         client.update(clientRequest);
+        clientRepository.save(client);
+        return client;
+    }
+
+    public Client deleteClient(Long clientId) {
+        Client client = authService.getAuthenticatedClient();
+        if (!Objects.equals(client.getId(), clientId)) {
+            throw new ValidationException("Clients can only edit themselves.", "Clients can only edit themselves.");
+        }
+        client = this.getClientById(clientId);
+        client.delete();
+        client.setStatus(Status.DISABLED);
         clientRepository.save(client);
         return client;
     }
